@@ -1,5 +1,6 @@
+<button type="reset" (click)="loadTodos()" >Reload list</button>
 <ul>
-  <li *ngFor="let item of todos?.body">
+  <li *ngFor="let item of todos">
     {{item.description}}
   </li>
 </ul>

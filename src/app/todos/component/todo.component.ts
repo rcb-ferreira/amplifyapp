@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { TodosService } from '../services/todos.service';
 
 @Component({
   selector: 'app-todo',
@@ -7,16 +7,24 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  todos: any;
-  constructor(private http: HttpClient) { }
+  todos: any = [];
+  constructor(
+    private ts: TodosService
+  ) { }
 
   ngOnInit() {
-    const url = 'https://mogmujk3qb.execute-api.eu-west-1.amazonaws.com/prod/items';
+    this.loadTodos();
+  }
 
-    this.http.get(url).subscribe(
-      data => { this.todos = data; },
-      error => { console.error(error); }
-    );
+  loadTodos() {
+    this.todos = [];
+
+    this.ts.getTodos()
+      .subscribe(
+        // tslint:disable-next-line:no-string-literal
+        data => { this.todos.push(...data['body']); },
+        error => { console.error(error); }
+      );
   }
 
 }
