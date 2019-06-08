@@ -11,13 +11,14 @@ import { MuseumComponent } from '../museum/museum.component';
 export class SettingsService {
 
     currentSettings: any;
-
     constructor(
         private injector: Injector,
         private api: ApiService
     ) { }
 
     loadSettings(): Promise<any> {
+        let keys = [];
+        const key = 'results';
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 const router = this.injector.get(Router);
@@ -43,11 +44,12 @@ export class SettingsService {
                                         component: DashboardComponent
                                     });
 
-                            let keys;
-                            response['results'].forEach((element, index) => {
-                                console.log(Object.keys(element));
-                                keys = Object.keys(element);
-                            });
+                            if (response[key]) {
+                                response[key].forEach((element, index) => {
+                                    console.log(Object.keys(element));
+                                    keys = Object.keys(element);
+                                });
+                            }
 
                             keys.forEach(element => {
                                 router.config.push({
