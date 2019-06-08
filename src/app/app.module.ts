@@ -10,7 +10,6 @@ import { ApiService } from './services/api.service';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UpdateDetailsRoutingModule } from './update-details-routing-module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
@@ -32,10 +31,16 @@ export function initSettings(settings: SettingsService) {
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([]),
-    UpdateDetailsRoutingModule
   ],
   entryComponents: [
-    AppComponent
+    AppComponent,
+    MuseumComponent,
+    MuseumComponent,
+    HomeComponent,
+    AboutComponent,
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [
     SettingsService,

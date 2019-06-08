@@ -15,6 +15,7 @@ export class MuseumComponent implements OnInit {
 
   ngOnInit() {
     this.router = this.injector.get(Router);
+    console.log(this.router);
   }
 
 }

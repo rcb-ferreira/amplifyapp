@@ -44,7 +44,7 @@ export class SettingsService {
                                     });
 
                             let keys;
-                            response['results'].map((element, index) => {
+                            response['results'].forEach((element, index) => {
                                 console.log(Object.keys(element));
                                 keys = Object.keys(element);
                             });
