@@ -35,7 +35,7 @@ export function initSettings(settings: SettingsService) {
     UpdateDetailsRoutingModule
   ],
   entryComponents: [
-    MuseumComponent
+    AppComponent
   ],
   providers: [
     SettingsService,
