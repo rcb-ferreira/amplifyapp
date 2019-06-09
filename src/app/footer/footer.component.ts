@@ -47,9 +47,9 @@ export class FooterComponent implements OnInit {
 
   submit(value) {
     localStorage.setItem('lang', JSON.stringify(value));
-    let lang = `http://${window.location.host}/en`;
+    let lang = `//${window.location.host}/en`;
     if (+value.orders > 1) {
-      lang = `http://${window.location.host}/pt`;
+      lang = `//${window.location.host}/pt`;
     }
     console.log(lang);
     document.location.replace(lang);
