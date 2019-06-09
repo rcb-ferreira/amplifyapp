@@ -6,18 +6,25 @@ import { HomeComponent } from '../home/home.component';
 import { AboutComponent } from '../about/about.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { MuseumComponent } from '../museum/museum.component';
+import { BetsComponent } from 'app/bets/bets.component';
+import { ErrorComponent } from 'app/error/error.component';
 
 @Injectable()
 export class SettingsService {
 
     currentSettings: any;
+    lang: string;
+    systemLang: any;
     constructor(
         private injector: Injector,
         private api: ApiService
-    ) { }
+    ) {
+        this.systemLang = JSON.parse(localStorage.getItem('lang'));
+    }
 
     loadSettings(): Promise<any> {
         let keys = [];
+        let buildRoutes = [];
         const key = 'results';
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -26,7 +33,32 @@ export class SettingsService {
                 this.api.getSettings()
                     .subscribe(
                         response => {
-                            router.config.push(
+
+                            if (+this.systemLang.orders > 1) {
+                                buildRoutes = [
+                                    {
+                                        path: 'home2',
+                                        component: HomeComponent
+                                    },
+                                    {
+                                        path: 'about2',
+                                        component: AboutComponent
+                                    },
+                                    {
+                                        path: 'bets2',
+                                        component: BetsComponent
+                                    },
+                                    {
+                                        path: 'museum2',
+                                        component: MuseumComponent
+                                    },
+                                    {
+                                        path: 'dashboard2',
+                                        component: DashboardComponent
+                                    }
+                                ];
+                            } else {
+                                buildRoutes = [
                                     {
                                         path: 'home',
                                         component: HomeComponent
@@ -36,13 +68,21 @@ export class SettingsService {
                                         component: AboutComponent
                                     },
                                     {
+                                        path: 'bets',
+                                        component: BetsComponent
+                                    },
+                                    {
                                         path: 'museum',
                                         component: MuseumComponent
                                     },
                                     {
                                         path: 'dashboard',
                                         component: DashboardComponent
-                                    });
+                                    }
+                                ];
+                            }
+
+                            router.config = buildRoutes;
 
                             if (response[key]) {
                                 response[key].forEach((element, index) => {
@@ -57,6 +97,12 @@ export class SettingsService {
                                     component: MuseumComponent
                                 });
                             });
+
+                            router.config.push({
+                                path: '**',
+                                component: ErrorComponent
+                            });
+
                             resolve(true);
                         },
                         err => {

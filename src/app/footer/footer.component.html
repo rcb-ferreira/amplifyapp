@@ -1,3 +1,8 @@
-<p>
-  footer works!
-</p>
+<form [formGroup]="form">
+  <label for="orders">Language</label>
+  <select formControlName="orders" id="orders" (change)="submit(form.value)">
+    <option *ngFor="let order of orders; let i = index" [value]="orders[i].id">
+      {{orders[i].name}}
+    </option>
+  </select>
+</form>
