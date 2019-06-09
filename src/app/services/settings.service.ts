@@ -19,7 +19,7 @@ export class SettingsService {
         private injector: Injector,
         private api: ApiService
     ) {
-        this.systemLang = JSON.parse(localStorage.getItem('lang'));
+        this.systemLang = JSON.parse(localStorage.getItem('lang')) || null;
     }
 
     loadSettings(): Promise<any> {
@@ -34,7 +34,7 @@ export class SettingsService {
                     .subscribe(
                         response => {
 
-                            if (+this.systemLang.orders > 1) {
+                            if (!!this.systemLang && +this.systemLang.orders > 1) {
                                 buildRoutes = [
                                     {
                                         path: 'home2',

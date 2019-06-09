@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
     ) {
     console.log(window.location.host);
     this.router = this.injector.get(Router);
-    this.systemLang = JSON.parse(localStorage.getItem('lang'));
+    this.systemLang = JSON.parse(localStorage.getItem('lang')) || { orders: 2};
   }
 
   ngOnInit() {
