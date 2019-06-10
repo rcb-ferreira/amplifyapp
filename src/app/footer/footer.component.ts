@@ -39,10 +39,7 @@ export class FooterComponent implements OnInit {
   }
 
   getOrders() {
-    return [
-      { id: 1, name: 'English' },
-      { id: 2, name: 'Portagues' }
-    ];
+    return [{ id: 1, name: 'English' }, { id: 2, name: 'Portagues' }];
   }
 
   submit(value) {
@@ -51,7 +48,6 @@ export class FooterComponent implements OnInit {
     if (+value.orders > 1) {
       lang = `//${window.location.host}/pt`;
     }
-    console.log(lang);
     document.location.replace(lang);
   }
 }
