@@ -1,0 +1,37 @@
+<!-- main app container -->
+<div class="card m-3">
+  <h5 class="card-header">Dequeue</h5>
+  <div class="card-body">
+    <form [formGroup]="registerForm" class="form-inline">
+      <div class="form-group col-12">
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="inputQueue" class="sr-only">Queue</label>
+          <input type="text" formControlName="queue" class="form-control" id="inputQueue" placeholder="Queue">
+        </div>
+
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mb-2 mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-primary" (click)="appened(registerForm.value.queue)">Append</button>
+            <button type="button" class="btn btn-secondary" (click)="prepend(registerForm.value.queue)">Prepend</button>
+          </div>
+          <div class="btn-group mb-2 mr-2" role="group" aria-label="Second group">
+            <button type="button" class="btn btn-danger" (click)="
+            pop()">Pop</button>
+            <button type="button" class="btn btn-warning" (click)="eject()">Eject</button>
+          </div>
+          <div class="btn-group mb-2" role="group" aria-label="Third group">
+            <button type="button" class="btn btn-info" (click)="show()">Show</button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <h5>list</h5>
+
+    {{ list | json}}
+  </div>
+</div>
+
