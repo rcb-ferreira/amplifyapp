@@ -1,0 +1,22 @@
+.nav-item.active .nav-item-sub {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: -webkit-inline-box;
+}
+
+.nav-item-sub {
+  display: none;
+}
+
+@media (max-width: 576px) {
+  .nav-item.active .nav-item-sub,
+  .nav-item-sub {
+    display: block;
+  }
+
+  .nav-tabs {
+    display: block;
+    width: 100%;
+  }
+}

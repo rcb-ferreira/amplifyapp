@@ -9,6 +9,7 @@ import { SettingsService } from './services/settings.service';
 import { ApiService } from './services/api.service';
 import { DequeueModule } from './dequeue/dequeue.module';
 import { DequeueComponent } from './dequeue/dequeue.component';
+import { HighlightDirective } from './app.directive';
 
 export function initSettings(settings: SettingsService) {
   return () => settings.loadSettings();
@@ -17,6 +18,7 @@ export function initSettings(settings: SettingsService) {
 @NgModule({
   declarations: [
     AppComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -31,12 +33,12 @@ export function initSettings(settings: SettingsService) {
   providers: [
     SettingsService,
     ApiService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initSettings,
-      deps: [SettingsService],
-      multi: true,
-    }
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initSettings,
+    //   deps: [SettingsService],
+    //   multi: true,
+    // }
   ],
   bootstrap: [AppComponent]
 })
